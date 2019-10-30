@@ -1,3 +1,5 @@
+option(build_frontseat "Build frontseat" ON)
+
 set(PROTOS 
   protobuf/bluefin_driver.proto
   protobuf/ctd_sample.proto
@@ -54,7 +56,9 @@ endif()
 
 set_target_properties(goby_moos PROPERTIES VERSION "${GOBY_VERSION}" SOVERSION "${GOBY_SOVERSION}")
 
-add_subdirectory(frontseat)
+if(build_frontseat)
+  add_subdirectory(frontseat)
+endif()
 
 if(build_zeromq)
   add_subdirectory(middleware)
